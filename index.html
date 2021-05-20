@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+  <head>
+    <title>SNAKES</title>
+  </head>
+  <body>
+        <h1>SNAKES</h1>
+        <p>1v1 snake game</p>
+        <canvas id="canvas" width="512" height="512" style="border:1px solid #000000;"></canvas>
+        <h3>Settings</h3>
+        <form method="get">
+            <label for="FPS">FPS:</label>
+            <select id="FPS" name="FPS">
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="15" selected>15</option>
+              <option value="20">20</option>
+              <option value="25">25</option>
+              <option value="30">30</option>
+            </select>
+            &nbsp;&nbsp;
+            <label for="SIZE">Snake Size:</label>
+            <select id="SIZE" name="SIZE">
+              <option value="4">4</option>
+              <option value="8">8</option>
+              <option value="16" selected>16</option>
+              <option value="32">32</option>
+              <option value="64">64</option>
+            </select>
+            &nbsp;&nbsp;
+            <label for="WORLD">World Size:</label>
+            <select id="WORLD" name="WORLD">
+              <option value="128">128</option>
+              <option value="256">256</option>
+              <option value="512" selected>512</option>
+              <option value="1024">1024</option>
+            </select>
+            &nbsp;&nbsp;
+            <input type="submit" value="Submit">
+        </form>
+        <h2>Instructions</h2>
+        <p>
+        If you are the biggest snake and hit the head of the other snake, you win.
+        </br>
+        If you hit any other part of the snake, you lose.
+        </br>
+        If both snakes are the same size and hit their heads, it's a tie.
+        </p>
+
+  </body>
+  <script src="snakes.js"></script>
+</html>
