@@ -24,7 +24,7 @@ let WORLD_SIZE;
 if(worldSize!=null){
     WORLD_SIZE = Math.round(worldSize);
 }else{
-    WORLD_SIZE = 512;
+    WORLD_SIZE = 256;
 }
 
 const size = findGetParameter("SIZE");
@@ -199,6 +199,11 @@ function checkCollisions(snake1,snake2,food){
                     }
                 }
             }
+            if(i>0){
+                if(checkCollision(snake1.body[0],snake1.body[i])){
+                    myAlert("BLUE snake wins!");
+                }
+            }
         }
         for(let i=0;i<snake2.body.length;i++){
             if(checkCollision(snake1.body[0],snake2.body[i])){
@@ -210,6 +215,11 @@ function checkCollisions(snake1,snake2,food){
                     if(snake1.body.length<snake2.body.length){
                         myAlert("BLUE snake wins!");
                     }
+                }
+            }
+            if(i>0){
+                if(checkCollision(snake2.body[0],snake2.body[i])){
+                    myAlert("GREEN snake wins!");
                 }
             }
         }
@@ -259,10 +269,9 @@ function main() {
 
     let interval;
     interval=setInterval(function(){
-        checkCollisions(snake1,snake2,food,interval);
         update(objects);
         draw(objects);
-        snake1.body;
+        checkCollisions(snake1,snake2,food,interval);
     },1000/FPS);
 
 }
