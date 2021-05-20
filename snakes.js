@@ -118,6 +118,12 @@ class Snake {
 
 
     update(){
+        if(this.shouldGrow){
+            this.shouldGrow=false;
+            this.body = [this.newPos()].concat(this.body);
+        }else{
+            this.body = [this.newPos()].concat(this.body.slice(0,this.body.length-1));
+        }
         if(!this.canMove && this.newDirection!=null){
             this.direction = this.newDirection;
             this.vy = DIRECTIONS[this.direction][0];
@@ -125,13 +131,6 @@ class Snake {
             this.newDirection = null;
             this.canMove = true;
         }
-        if(this.shouldGrow){
-            this.shouldGrow=false;
-            this.body = [this.newPos()].concat(this.body);
-        }else{
-            this.body = [this.newPos()].concat(this.body.slice(0,this.body.length-1));
-        }
-
     }
 
     draw() {
@@ -188,9 +187,7 @@ function myAlert(text) {
 
 function checkCollisions(snake1,snake2,food){
         for(let i=0;i<snake1.body.length;i++){
-            if(checkCollision(snake2.body[0],snake1.body[i])){
-                    console.log(snake1.direction);
-                    console.log(snake2.direction);
+            if(checkCollision(snake2.body[0],snake1.body[i]) || checkCollision(snake2.newPos(),snake1.body[i])){
                 if(i==0 && snake2.body.length==snake1.body.length){
                     myAlert("tie");
                 }else{
@@ -206,7 +203,7 @@ function checkCollisions(snake1,snake2,food){
             }
         }
         for(let i=0;i<snake2.body.length;i++){
-            if(checkCollision(snake1.body[0],snake2.body[i])){
+            if(checkCollision(snake1.body[0],snake2.body[i]) || checkCollision(snake1.newPos(),snake2.body[i])){
                 console.log(snake1.direction);
                 console.log(snake2.direction);
                 if(i==0 && snake2.body.length==snake1.body.length){
@@ -269,9 +266,9 @@ function main() {
 
     let interval;
     interval=setInterval(function(){
+        checkCollisions(snake1,snake2,food,interval);
         update(objects);
         draw(objects);
-        checkCollisions(snake1,snake2,food,interval);
     },1000/FPS);
 
 }
