@@ -244,15 +244,15 @@ function main() {
         else if ( e.key== "s" ) {
             snake1.changeMovement(3);
         }
-        else if ( e.key== "ArrowLeft" ) {
+        else if ( e.key== "j" ) {
             snake2.changeMovement(0);
-        } else if ( e.key== "ArrowUp" ) {
+        } else if ( e.key== "i" ) {
             snake2.changeMovement(1);
         }
-        else if ( e.key == "ArrowRight" ) {
+        else if ( e.key == "l" ) {
             snake2.changeMovement(2);
         }
-        else if ( e.key== "ArrowDown" ) {
+        else if ( e.key== "k" ) {
             snake2.changeMovement(3);
         }
     }, true);
